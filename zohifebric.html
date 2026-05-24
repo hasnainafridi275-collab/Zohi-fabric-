@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zohi Fabric | Premium Textiles</title>
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-color: #8B5A2B; /* Earthy Brown */
+            --secondary-color: #D2B48C; /* Tan */
+            --accent-color: #E6CCB2; /* Pale Gold */
+            --text-dark: #333333;
+            --text-light: #ffffff;
+            --bg-light: #F9F9F9;
+            --bg-cream: #FDFBF7;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1, h2, h3 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+        }
+
+        /* --- HEADER & NAV --- */
+        header {
+            background-color: var(--bg-cream);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-family: var(--font-heading);
+            color: var(--primary-color);
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--text-dark);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 90vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1620799140408-ed5341cd2431?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-light);
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            border: 2px solid var(--primary-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--text-light);
+            border-color: var(--text-light);
+        }
+
+        .btn-light {
+            background-color: var(--text-light);
+            color: var(--primary-color);
+            border-color: var(--text-light);
+        }
+
+        .btn-light:hover {
+            background-color: transparent;
+            color: var(--text-light);
+        }
+
+        /* --- ABOUT SECTION --- */
+        .section {
+            padding: 5rem 10%;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            max-width: 700px;
+            margin: 0 auto 3rem auto;
+            color: #666;
+        }
+
+        /* --- FEATURED FABRICS (GRID) --- */
+        .fabric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .fabric-card {
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            overflow: hidden;
+        }
+
+        .fabric-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .fabric-img {
+            height: 250px;
+            background-color: #ddd;
+            /* Placeholder background */
+            background-image: url('https://images.unsplash.com/photo-1598535294640-f86a09f6ef68?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        /* Adding variation to placeholders via CSS classes would require JS or multiple images. 
+           Using generic placeholders for simplicity. */
+
+        .fabric-info {
+            padding: 1.5rem;
+        }
+
+        .fabric-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .fabric-info p {
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        /* --- COLLECTION BANNER --- */
+        .collection-banner {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 4rem 10%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .collection-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .collection-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* --- CONTACT FORM --- */
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            text-align: left;
+            justify-content: center;
+        }
+
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            background: white;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            font-family: var(--font-body);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #222;
+            color: #aaa;
+            padding: 3rem 10%;
+            text-align: center;
+        }
+
+        .footer-logo {
+            color: var(--text-light);
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                background-color: var(--bg-cream);
+                width: 100%;
+                text-align: center;
+                padding: 2rem;
+                box-shadow: 0 5px 5px rgba(0,0,0,0.1);
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+    </style>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <a href="#" class="logo">Zohi <span>Fabric</span></a>
+        <div class="mobile-menu-btn" onclick="toggleMenu()">&#9776;</div>
+        <nav>
+            <ul id="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#shop">Shop Fabrics</a></li>
+                <li><a href="#about">Our Story</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Zohi Fabric</h1>
+            <p>Luxurious textiles for your dream designs. Ethically sourced, expertly curated.</p>
+            <a href="#shop" class="btn btn-light">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="section" id="about">
+        <h2 class="section-title">Woven with Elegance</h2>
+        <p class="section-subtitle">
+            At Zohi Fabric, we believe that the texture of your life should be as beautiful as the clothes you wear. We specialize in premium cotton, silk, and linen.
+        </p>
+    </section>
+
+    <!-- SHOP SECTION -->
+    <section class="section" id="shop" style="background-color: #fff;">
+        <h2 class="section-title">Featured Collections</h2>
+        <div class="fabric-grid">
+            <!-- Card 1 -->
+            <div class="fabric-card">
+                <div class="fabric-img" style="background-image: url('https://images.unsplash.com/photo-1614883424053-f40e992d56cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="fabric-info">
+                    <h3>Organic Cotton</h3>
+                    <p>Soft, breathable, and eco-friendly. Perfect for summer.</p>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="fabric-card">
+                <div class="fabric-img" style="background-image: url('https://images.unsplash.com/photo-1606293926075-69a00dbfde81?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="fabric-info">
+                    <h3>Raw Silk</h3>
+                    <p>Luxurious sheen and drape for evening wear.</p>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="fabric-card">
+                <div class="fabric-img" style="background-image: url('https://images.unsplash.com/photo-1520013817300-1f4c1cb245af?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="fabric-info">
+                    <h3>Linen Blend</h3>
+                    <p>Lightweight and airy for a relaxed, chic look.</p>
+                </div>
+            </div>
+             <!-- Card 4 -->
+             <div class="fabric-card">
+                <div class="fabric-img" style="background-image: url('https://images.unsplash.com/photo-1620799139834-6b8f844fbe61?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="fabric-info">
+                    <h3>Velvet Touch</h3>
+                    <p>Rich, deep textures for luxury upholstery.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BANNER SECTION -->
+    <section class="collection-banner">
+        <div class="collection-text">
+            <h2>The Summer Collection</h2>
+            <p>Fresh colors and new arrivals just arrived at Zohi Fabric.</p>
+        </div>
+        <a href="#shop" class="btn">View Collection</a>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="section" id="contact">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <p><strong>Zohi Fabric</strong></p>
+                <p>123 Textile Lane, Fashion City</p>
+                <p>Email: hello@zohifabric.com</p>
+                <p>Phone: (555) 123-4567</p>
+            </div>
+            <form class="contact-form">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" placeholder="Your Name">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="Your Email">
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea rows="4" placeholder="How can we help you?"></textarea>
+                </div>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <span class="footer-logo">Zohi Fabric</span>
+        <p>&copy; 2023 Zohi Fabric. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JAVASCRIPT FOR MOBILE MENU -->
+    <script>
+        function toggleMenu() {
+            const navMenu = document.getElementById('nav-menu');
+            navMenu.classList.toggle
